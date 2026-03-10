@@ -15,19 +15,10 @@ $navLinks = [
         <div class="flex items-center justify-between h-16">
 
             <!-- Logo -->
-            <a href="<?= base_url('/') ?>" class="flex items-center gap-2.5 group">
-                <!-- Ícone de balança simples como logótipo -->
-                <div class="w-8 h-8 bg-brand flex items-center justify-center flex-shrink-0">
-                    <i class="ph-fill ph-scales text-white text-sm"></i>
-                </div>
-                <div class="leading-none">
-                    <p style="color:#373737; font-weight:700; font-size:1rem; letter-spacing:0.05em; line-height:1;">
-                        ADVOCACIA
-                    </p>
-                    <p style="color:#999; font-weight:400; font-size:0.6rem; letter-spacing:0.18em; line-height:1; margin-top:3px;">
-                        CONSULTORIA JURÍDICA
-                    </p>
-                </div>
+            <a href="<?= base_url('/') ?>" class="flex items-center group">
+                <img src="<?= base_url('assets/image/logo.png') ?>" 
+                    alt="Elite Jurídica"
+                    class="h-10 w-auto">
             </a>
 
             <!-- Links Desktop -->

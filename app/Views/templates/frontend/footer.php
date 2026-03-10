@@ -7,19 +7,11 @@
             <!-- Coluna 1 — Marca -->
             <div class="lg:col-span-1">
                 <!-- Logo -->
-                <div class="flex items-center gap-2.5 mb-6">
-                    <div class="w-8 h-8 bg-white flex items-center justify-center">
-                        <i class="ph-fill ph-scales text-brand text-sm"></i>
-                    </div>
-                    <div class="leading-none">
-                        <p style="font-weight:700; font-size:1rem; letter-spacing:0.06em; line-height:1; color:#fff;">
-                            ADVOCACIA
-                        </p>
-                        <p style="font-weight:400; font-size:0.6rem; letter-spacing:0.18em; line-height:1; margin-top:3px; color:rgba(255,255,255,0.5);">
-                            CONSULTORIA JURÍDICA
-                        </p>
-                    </div>
-                </div>
+                <a href="<?= base_url('/') ?>" class="flex items-center group">
+                <img src="<?= base_url('assets/image/logoWhite.png') ?>" 
+                        alt="Elite Jurídica"
+                        class="h-10 w-auto my-4">
+                </a>
 
                 <p class="text-white/60 text-sm font-normal leading-relaxed">
                     Comprometidos com a excelência jurídica e a defesa intransigente dos seus direitos.
