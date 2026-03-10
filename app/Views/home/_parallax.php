@@ -6,9 +6,7 @@
  */
 ?>
 
-<!-- ═══════════════════════════════════════════
-     PARALLAX — FRASE DE IMPACTO
-═══════════════════════════════════════════ -->
+
 <section id="parallax-section"
          class="relative overflow-hidden"
          style="height: 480px;">
@@ -76,53 +74,3 @@
     </div>
 
 </section>
-
-<style>
-    .par-reveal {
-        opacity: 0;
-        transform: translateY(24px);
-        transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .par-reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* Fallback para mobile — background-attachment:fixed não funciona bem em iOS */
-    @media (max-width: 768px) {
-        #parallax-bg {
-            background-attachment: scroll !important;
-            top: 0 !important;
-            height: 100% !important;
-        }
-    }
-</style>
-
-<script>
-(function () {
-    // Reveal ao entrar no viewport
-    const reveal = document.querySelector('#parallax-section .par-reveal');
-    const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.classList.add('visible');
-                obs.unobserve(e.target);
-            }
-        });
-    }, { threshold: 0.2 });
-    if (reveal) obs.observe(reveal);
-
-    // Parallax manual (reforço para browsers que ignoram background-attachment:fixed)
-    const bg = document.getElementById('parallax-bg');
-    const section = document.getElementById('parallax-section');
-
-    function onScroll() {
-        if (window.innerWidth < 769) return; // skip mobile
-        const rect   = section.getBoundingClientRect();
-        const offset = rect.top * 0.3; // velocidade do parallax
-        bg.style.transform = `translateY(${offset}px)`;
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-})();
-</script>
