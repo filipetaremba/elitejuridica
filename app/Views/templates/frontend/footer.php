@@ -8,7 +8,7 @@
             <div class="lg:col-span-1">
                 <!-- Logo -->
                 <a href="<?= base_url('/') ?>" class="flex items-center group">
-                <img src="<?= base_url('assets/image/logoWhite.png') ?>" 
+                <img src="<?= base_url('assets/images/logoWhite.png') ?>" 
                         alt="Elite Jurídica"
                         class="h-10 w-auto my-4">
                 </a>

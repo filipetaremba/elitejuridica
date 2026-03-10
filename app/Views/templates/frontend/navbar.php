@@ -16,7 +16,7 @@ $navLinks = [
 
             <!-- Logo -->
             <a href="<?= base_url('/') ?>" class="flex items-center group">
-                <img src="<?= base_url('assets/image/logo.png') ?>" 
+                <img src="<?= base_url('assets/images/logo.png') ?>" 
                     alt="Elite Jurídica"
                     class="h-10 w-auto">
             </a>
