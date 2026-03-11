@@ -12,7 +12,7 @@ $exemplo = [
         'categoria'  => 'Direito Laboral',
         'titulo'     => 'Alterações à Lei do Trabalho: o que muda em 2024',
         'resumo'     => 'As recentes alterações legislativas trazem novas obrigações para empregadores e reforçam os direitos dos trabalhadores em Moçambique.',
-        'imagem'     => '',
+        'imagem'     => 'https://media.gettyimages.com/id/104821087/pt/foto/advogado-segurando-o-documento-e-falar-com-j%C3%BAri-em-sala-de-tribunal.jpg?s=612x612&w=0&k=20&c=6ljf3o3N5E3dsiVjq--xwrJTZcHTuGUnEatow9OVh9s=',
         'created_at' => '2024-11-10 09:00:00',
     ],
     [
@@ -20,7 +20,7 @@ $exemplo = [
         'categoria'  => 'Direito Empresarial',
         'titulo'     => 'Guia prático para constituição de empresas em Moçambique',
         'resumo'     => 'Conheça todos os passos legais, documentação necessária e prazos para registar a sua empresa de forma rápida e segura.',
-        'imagem'     => '',
+        'imagem'     => 'https://media.gettyimages.com/id/1502896521/pt/foto/business-meeting-documents-and-people-clients-or-partner-discussion-of-finance-loan-and.jpg?s=612x612&w=0&k=20&c=f0q8vsjHThbVdlDtJxY53rfp_ps-X2aNzywi3-7LUo8=',
         'created_at' => '2024-10-28 14:30:00',
     ],
     [
@@ -28,14 +28,14 @@ $exemplo = [
         'categoria'  => 'Direito Civil',
         'titulo'     => 'Direitos do consumidor: como reclamar e ser ressarcido',
         'resumo'     => 'Muitos cidadãos desconhecem os seus direitos face a produtos defeituosos ou serviços prestados de forma inadequada.',
-        'imagem'     => '',
+        'imagem'     => 'https://media.gettyimages.com/id/1477043851/pt/foto/business-meeting-speaking-and-black-man-with-discussion-planning-and-corporate-proposal-staff.jpg?s=612x612&w=0&k=20&c=to3tnOG6e1aKAzlj33Mi06l8KHTByD5stcZEOGdZ_Wk=',
         'created_at' => '2024-10-15 10:00:00',
     ],[
         'slug'       => 'direitos-consumidor',
         'categoria'  => 'Direito Civil',
         'titulo'     => 'Direitos do consumidor: como reclamar e ser ressarcido',
         'resumo'     => 'Muitos cidadãos desconhecem os seus direitos face a produtos defeituosos ou serviços prestados de forma inadequada.',
-        'imagem'     => '',
+        'imagem'     => 'https://media.gettyimages.com/id/1462983023/pt/foto/office-communication-negotiation-proposal-and-business-people-discussion-for-investment-deal.jpg?s=612x612&w=0&k=20&c=4VjfaFQdDiV9DwTll3c7tFfNcy1ABNW5BK45cYsnx6I=',
         'created_at' => '2024-10-15 10:00:00',
     ],
 ];
