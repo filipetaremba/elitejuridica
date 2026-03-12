@@ -2,58 +2,88 @@
 
 namespace App\Controllers\Admin;
 
-use App\Controllers\BaseController;
 use App\Models\UserModel;
+use App\Models\EquipeModel;
+use App\Models\ServicosModel;
+use App\Models\NoticiasModel;
+use App\Models\MensagensModel;
 
-class Dashboard extends BaseController
+class Dashboard extends BaseAdminController
 {
     public function index(): string
     {
-        // Estatísticas mockadas (substituir por queries reais quando os models estiverem prontos)
+        $equipeModel    = new EquipeModel();
+        $servicosModel  = new ServicosModel();
+        $noticiasModel  = new NoticiasModel();
+        $mensagensModel = new MensagensModel();
+
         $stats = [
-            ['icone' => 'ph-users-three',   'label' => 'Membros da Equipa', 'valor' => 6,  'cor' => '#373737'],
-            ['icone' => 'ph-scales',        'label' => 'Serviços Activos',  'valor' => 9,  'cor' => '#555'],
-            ['icone' => 'ph-newspaper',     'label' => 'Artigos Publicados','valor' => 6,  'cor' => '#777'],
-            ['icone' => 'ph-envelope-open', 'label' => 'Mensagens Novas',   'valor' => 3,  'cor' => '#999'],
+            [
+                'icone' => 'ph-users-three',
+                'label' => 'Membros da Equipa',
+                'valor' => $equipeModel->where('ativo', 1)->countAllResults(),
+                'url'   => 'admin/equipe',
+            ],
+            [
+                'icone' => 'ph-scales',
+                'label' => 'Serviços Activos',
+                'valor' => $servicosModel->where('ativo', 1)->countAllResults(),
+                'url'   => 'admin/servicos',
+            ],
+            [
+                'icone' => 'ph-newspaper',
+                'label' => 'Artigos Publicados',
+                'valor' => $noticiasModel->where('publicado', 1)->countAllResults(),
+                'url'   => 'admin/noticias',
+            ],
+            [
+                'icone' => 'ph-envelope',
+                'label' => 'Mensagens Novas',
+                'valor' => $mensagensModel->where('lida', 0)->countAllResults(),
+                'url'   => 'admin/mensagens',
+            ],
         ];
 
-        // Actividade recente mockada
-        $actividade = [
-            ['tipo'=>'noticia',  'icone'=>'ph-newspaper',   'msg'=>'Novo artigo publicado: "Alterações à Lei do Trabalho"', 'quando'=>'Há 2 horas'],
-            ['tipo'=>'equipe',   'icone'=>'ph-user-plus',   'msg'=>'Membro adicionado: Dr. Pedro Nhambe',                  'quando'=>'Há 1 dia'],
-            ['tipo'=>'mensagem', 'icone'=>'ph-envelope',    'msg'=>'Nova mensagem de contacto recebida',                   'quando'=>'Há 2 dias'],
-            ['tipo'=>'servico',  'icone'=>'ph-briefcase',   'msg'=>'Serviço actualizado: Direito Administrativo',          'quando'=>'Há 3 dias'],
-            ['tipo'=>'login',    'icone'=>'ph-sign-in',     'msg'=>'Login efectuado: editor@advocacia.co.mz',              'quando'=>'Há 4 dias'],
-        ];
+        $ultimasNoticias = $noticiasModel
+            ->select('id, titulo, categoria, publicado_em, publicado, imagem')
+            ->orderBy('created_at', 'DESC')
+            ->limit(5)
+            ->findAll();
 
-        $data = [
-            'title'      => 'Dashboard — Área Administrativa',
-            'stats'      => $stats,
-            'actividade' => $actividade,
-            'success'    => session()->getFlashdata('success'),
-        ];
+        $mensagensRecentes = $mensagensModel
+            ->select('id, nome, email, assunto, area, created_at, lida')
+            ->orderBy('created_at', 'DESC')
+            ->limit(5)
+            ->findAll();
 
-        return view('templates/admin/main', $data + [
-            'content' => view('admin/dashboard/index', $data),
+        $ultimosMembros = $equipeModel
+            ->select('id, nome, cargo, foto, created_at')
+            ->orderBy('created_at', 'DESC')
+            ->limit(4)
+            ->findAll();
+
+        $data = array_merge($this->baseData('Dashboard'), [
+            'stats'             => $stats,
+            'ultimasNoticias'   => $ultimasNoticias,
+            'mensagensRecentes' => $mensagensRecentes,
+            'ultimosMembros'    => $ultimosMembros,
         ]);
+
+        return $this->render('admin/dashboard/index', $data);
     }
 
     public function perfil(): string
     {
-        $data = [
-            'title'  => 'Meu Perfil',
+        $data = array_merge($this->baseData('Meu Perfil'), [
             'errors' => session()->getFlashdata('errors') ?? [],
-            'success'=> session()->getFlashdata('success'),
-        ];
-
-        return view('templates/admin/main', $data + [
-            'content' => view('admin/dashboard/perfil', $data),
         ]);
+
+        return $this->render('admin/dashboard/perfil', $data);
     }
 
     public function updatePerfil(): \CodeIgniter\HTTP\RedirectResponse
     {
-        $userId = session()->get('user_id');
+        $userId = (int) session()->get('user_id');
 
         $rules = [
             'nome'  => 'required|min_length[3]',
@@ -81,12 +111,12 @@ class Dashboard extends BaseController
             $dados['password'] = $this->request->getPost('password');
         }
 
-        $model->update($userId, $dados);
+        $model->skipValidation(true)->update($userId, $dados);
 
-        // Actualiza sessão
         session()->set('user_nome',  $dados['nome']);
         session()->set('user_email', $dados['email']);
 
-        return redirect()->to('/admin/perfil')->with('success', 'Perfil actualizado com sucesso.');
+        return redirect()->to(base_url('admin/perfil'))
+            ->with('success', 'Perfil actualizado com sucesso.');
     }
 }
