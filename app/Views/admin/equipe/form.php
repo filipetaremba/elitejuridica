@@ -123,8 +123,39 @@ $valIdiomas = is_array($membro['idiomas']?? null) ? implode(', ', $membro['idiom
                     Formação
                 </p>
                 <div class="grid md:grid-cols-2 gap-x-6">
-                    <?= view('admin/_field', ['label'=>'Licenciatura','name'=>'formacao',     'value'=>$val('formacao')]) ?>
-                    <?= view('admin/_field', ['label'=>'Pós-Graduação / Mestrado','name'=>'pos_graduacao','value'=>$val('pos_graduacao')]) ?>
+
+                    <!-- Licenciatura -->
+                    <div style="margin-bottom:1.25rem;">
+                        <label style="display:block; font-weight:700; font-size:0.65rem;
+                                       letter-spacing:0.12em; text-transform:uppercase;
+                                       color:#555; margin-bottom:8px;">
+                            Licenciatura
+                        </label>
+                        <textarea name="formacao" rows="3"
+                                  placeholder="ex: Licenciatura em Direito — Universidade Eduardo Mondlane, 2003"
+                                  style="width:100%; padding:0.85rem 1rem; border:1px solid #E5E5E5;
+                                          font-family:'Antonio',sans-serif; font-size:0.88rem; color:#333;
+                                          resize:vertical; outline:none; transition:border-color 0.2s; line-height:1.5;"
+                                  onfocus="this.style.borderColor='#373737'"
+                                  onblur="this.style.borderColor='#E5E5E5'"><?= esc($val('formacao')) ?></textarea>
+                    </div>
+
+                    <!-- Pós-Graduação -->
+                    <div style="margin-bottom:1.25rem;">
+                        <label style="display:block; font-weight:700; font-size:0.65rem;
+                                       letter-spacing:0.12em; text-transform:uppercase;
+                                       color:#555; margin-bottom:8px;">
+                            Pós-Graduação / Mestrado
+                        </label>
+                        <textarea name="pos_graduacao" rows="3"
+                                  placeholder="ex: Mestrado em Direito Empresarial — ISBE, 2012"
+                                  style="width:100%; padding:0.85rem 1rem; border:1px solid #E5E5E5;
+                                          font-family:'Antonio',sans-serif; font-size:0.88rem; color:#333;
+                                          resize:vertical; outline:none; transition:border-color 0.2s; line-height:1.5;"
+                                  onfocus="this.style.borderColor='#373737'"
+                                  onblur="this.style.borderColor='#E5E5E5'"><?= esc($val('pos_graduacao')) ?></textarea>
+                    </div>
+
                 </div>
             </div>
 

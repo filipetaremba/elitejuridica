@@ -42,14 +42,12 @@ class CreateEquipeTable extends Migration
                 'null' => true,
             ],
             'formacao' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
-                'null'       => true,
+                'type' => 'TEXT',
+                'null' => true,
             ],
             'pos_graduacao' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
-                'null'       => true,
+                'type' => 'TEXT',
+                'null' => true,
             ],
             // JSON: ["Direito Civil","Arbitragem"]
             'areas' => [
@@ -58,9 +56,8 @@ class CreateEquipeTable extends Migration
             ],
             // JSON: ["Português","Inglês"]
             'idiomas' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
-                'null'       => true,
+                'type' => 'TEXT',
+                'null' => true,
             ],
             'foto' => [
                 'type'       => 'VARCHAR',

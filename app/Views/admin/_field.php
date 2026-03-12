@@ -9,7 +9,7 @@
  *   $required — bool
  *   $placeholder — string
  */
-$type        = $type        ?? 'text';
+$type        = 'text';
 $required    = $required    ?? false;
 $placeholder = $placeholder ?? '';
 $value       = $value       ?? '';
