@@ -5,32 +5,39 @@ namespace App\Controllers;
 use App\Models\ServicosModel;
 use App\Models\EquipeModel;
 use App\Models\NoticiasModel;
-use App\Models\BannerModel; // ✅ Adicionei o modelo do banner
 
 class Home extends BaseController
 {
     public function index(): string
     {
-        // ── Banner / Slider (dados do banco) ────────────
-        $bannerModel = new BannerModel();
-        $banners = $bannerModel->findAll();
-
-        // Transformar os banners no formato que a view espera
-        $banner_data = ['slides' => []];
-        foreach ($banners as $banner) {
-            $banner_data['slides'][] = [
-                'image'    => base_url($banner['image']),
-                'label'    => $banner['label'],
-                'titulo'   => $banner['titulo'],
-                'subtitulo'=> $banner['subtitulo'],
-                'cta'      => [
-                    'texto' => $banner['cta_texto'],
-                    'url'   => $banner['cta_url']
+        // ── Banner / Slider ─────────────────────────────
+        $banner_data = [
+            'slides' => [
+                [
+                    'image'    => base_url('assets/images/banner1.jpeg'),
+                    'label'    => 'Direito Civil & Empresarial',
+                    'titulo'   => 'Defendemos os seus Direitos com Rigor e Ética',
+                    'subtitulo'=> 'Consultoria jurídica especializada para particulares e empresas.',
+                    'cta'      => ['texto' => 'Saber Mais', 'url' => base_url('servicos')],
                 ],
-            ];
-        }
+                [
+                    'image'    => base_url('assets/images/banner2.webp'),
+                    'label'    => 'Direito Penal',
+                    'titulo'   => 'Protecção Jurídica Quando Mais Precisa',
+                    'subtitulo'=> 'Representação sólida e estratégica em todos os tribunais.',
+                    'cta'      => ['texto' => 'Saber Mais', 'url' => base_url('servicos')],
+                ],
+                [
+                    'image'    => base_url('assets/images/banner-3.jpg'),
+                    'label'    => 'Direito de Família',
+                    'titulo'   => 'Soluções Humanas para Questões Complexas',
+                    'subtitulo'=> 'Acompanhamento sensível e eficaz em processos familiares.',
+                    'cta'      => ['texto' => 'Saber Mais', 'url' => base_url('about')],
+                ],
+            ],
+        ];
 
-        // ── Serviços (destaques) ─────────────────────────
+        // // ── Serviços (destaques) ─────────────────────────
         // $servicos_data = [
         //     'servicos' => (new ServicosModel())
         //         ->where('destaque', 1)
@@ -38,7 +45,7 @@ class Home extends BaseController
         //         ->findAll(),
         // ];
 
-        // ── Equipa (destaques) ───────────────────────────
+        // // ── Equipa (destaques) ───────────────────────────
         // $equipe_data = [
         //     'equipe' => (new EquipeModel())
         //         ->where('destaque', 1)
@@ -46,7 +53,7 @@ class Home extends BaseController
         //         ->findAll(),
         // ];
 
-        // ── Notícias (últimas 3) ─────────────────────────
+        // // ── Notícias (últimas 3) ─────────────────────────
         // $noticias_data = [
         //     'noticias' => (new NoticiasModel())
         //         ->orderBy('created_at', 'DESC')
