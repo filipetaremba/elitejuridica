@@ -4,7 +4,9 @@
  * Página inicial
  * Define CSS e JS extras usados apenas nesta página
  */
-
+$slides   = $banner_data['slides']   ?? [];
+$equipe   = $equipe_data['equipe']   ?? [];
+$noticias = $noticias_data['noticias'] ?? [];
 /* CSS específico da HOME */
 $extra_head = '
 <style>
@@ -75,8 +77,8 @@ $extra_scripts = '
 
 <?= view('home/_sobre') ?>
 
-<?= view('home/_equipe') ?>
+<?= view('home/_equipe', $equipe_data) ?>
 
 <?= view('home/_parallax') ?>
 
-<?= view('home/_noticias') ?>
+<?= view('home/_noticias', $noticias_data) ?>

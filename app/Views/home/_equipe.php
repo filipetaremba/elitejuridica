@@ -2,7 +2,7 @@
 /**
  * Parcial: home/_equipe.php
  * Dados esperados: $equipe (array — membros com destaque=1, máx 4)
- * Chamada: view('home/_equipe', $equipe_data)
+ * Chamada: view('home/_equipe', ['equipe' => $equipe])
  */
 ?>
 
@@ -50,7 +50,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
             <?php foreach ($equipe as $idx => $membro): ?>
-            <div class="eq-card bg-white group eq-reveal"
+            <div class="eq-card bg-white eq-reveal"
                  style="transition-delay: <?= $idx * 80 ?>ms;">
 
                 <!-- Imagem -->
@@ -58,15 +58,12 @@
                     <img src="<?= esc($membro['foto'] ?? base_url('assets/images/placeholder-membro.jpg')) ?>"
                          alt="<?= esc($membro['nome']) ?>"
                          class="w-full h-full object-cover"
-                         style="transition:transform 0.6s ease;"
-                         onmouseover="this.style.transform='scale(1.04)'"
-                         onmouseout="this.style.transform='scale(1)'">
+                         style="transition:transform 0.6s ease;">
 
                     <!-- Overlay no hover -->
                     <div class="absolute inset-0 eq-overlay"
                          style="background:rgba(55,55,55,0); transition:background 0.35s ease;
                                 display:flex; align-items:flex-end; padding:1.5rem;">
-                        <!-- Ícones sociais aparecem no hover -->
                         <div class="eq-social"
                              style="display:flex; gap:8px; opacity:0;
                                     transform:translateY(10px);
@@ -115,44 +112,24 @@
                 </div>
 
             </div>
-
-            <!-- JS hover por card -->
-            <script>
-            (function(){
-                const cards = document.querySelectorAll('.eq-card');
-                cards.forEach(card => {
-                    const overlay = card.querySelector('.eq-overlay');
-                    const social  = card.querySelector('.eq-social');
-                    card.addEventListener('mouseenter', () => {
-                        if (overlay) overlay.style.background = 'rgba(55,55,55,0.55)';
-                        if (social)  { social.style.opacity = '1'; social.style.transform = 'translateY(0)'; }
-                    });
-                    card.addEventListener('mouseleave', () => {
-                        if (overlay) overlay.style.background = 'rgba(55,55,55,0)';
-                        if (social)  { social.style.opacity = '0'; social.style.transform = 'translateY(10px)'; }
-                    });
-                });
-            })();
-            </script>
-
             <?php endforeach; ?>
         </div>
 
         <?php else: ?>
-        <!-- Fallback — dados de exemplo enquanto não há model -->
+        <!-- Fallback — dados de exemplo enquanto não há registos -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
             <?php
             $exemplos = [
-                ['nome'=>'Dr. João Silva',    'cargo'=>'Sócio Fundador',   'esp'=>'Direito Civil'],
-                ['nome'=>'Dra. Ana Ferreira', 'cargo'=>'Sócia',            'esp'=>'Direito Penal'],
-                ['nome'=>'Dr. Carlos Matos',  'cargo'=>'Advogado Sénior',  'esp'=>'Direito Empresarial'],
-                ['nome'=>'Dra. Maria Sousa',  'cargo'=>'Advogada',         'esp'=>'Direito de Família'],
+                // ['nome'=>'Dr. João Silva',    'cargo'=>'Sócio Fundador',  'esp'=>'Direito Civil'],
+                // ['nome'=>'Dra. Ana Ferreira', 'cargo'=>'Sócia',           'esp'=>'Direito Penal'],
+                // ['nome'=>'Dr. Carlos Matos',  'cargo'=>'Advogado Sénior', 'esp'=>'Direito Empresarial'],
+                ['nome'=>'Dra. Maria Sousa',  'cargo'=>'Advogada',        'esp'=>'Direito de Família'],
             ];
+            $cores = ['#D5D5D5','#C8C8C8','#BEBEBE','#D0D0D0'];
             foreach ($exemplos as $idx => $m):
             ?>
-            <div class="bg-white eq-reveal" style="transition-delay:<?= $idx*80 ?>ms;">
-                <!-- Placeholder da foto -->
-                <div style="aspect-ratio:3/4; background:<?= ['#D5D5D5','#C8C8C8','#BEBEBE','#D0D0D0'][$idx] ?>;
+            <div class="bg-white eq-reveal" style="transition-delay:<?= $idx * 80 ?>ms;">
+                <div style="aspect-ratio:3/4; background:<?= $cores[$idx] ?>;
                              display:flex; align-items:center; justify-content:center;">
                     <i class="ph ph-user" style="font-size:3rem; color:rgba(255,255,255,0.4);"></i>
                 </div>
@@ -175,6 +152,10 @@
 
 <style>
     .eq-cta-link:hover { gap: 14px !important; }
+
+    .eq-card:hover .eq-overlay { background: rgba(55,55,55,0.55) !important; }
+    .eq-card:hover .eq-social  { opacity: 1 !important; transform: translateY(0) !important; }
+    .eq-card:hover img         { transform: scale(1.04); }
 
     .eq-reveal {
         opacity: 0;

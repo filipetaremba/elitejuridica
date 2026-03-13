@@ -199,7 +199,7 @@
             </a>
         </div>
 
-        <?php
+        <!-- <?php
         // Fallback se o model não retornar dados
         $lideranca_ex = [
             ['nome'=>'Dr. João Silva',    'cargo'=>'Sócio Fundador', 'foto'=>'', 'especialidade'=>'Direito Civil & Empresarial'],
@@ -207,7 +207,7 @@
             ['nome'=>'Dr. Carlos Matos',  'cargo'=>'Sócio Sénior',   'foto'=>'', 'especialidade'=>'Direito Administrativo'],
         ];
         $membros = !empty($lideranca) ? $lideranca : $lideranca_ex;
-        ?>
+        ?> -->
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
             <?php foreach ($membros as $idx => $m): ?>
