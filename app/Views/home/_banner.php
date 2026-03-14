@@ -6,9 +6,7 @@
  */
 ?>
 
-<!-- ═══════════════════════════════════════════
-     BANNER / HERO SLIDER
-═══════════════════════════════════════════ -->
+
 <section id="hero-slider"
          class="relative w-full overflow-hidden"
          style="height: calc(100vh - 64px); min-height: 580px;">
