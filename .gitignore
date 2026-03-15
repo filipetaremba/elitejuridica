@@ -123,7 +123,8 @@ _modules/*
 .vscode/
 
 /results/
-/phpunit*.xml
+/phpunit*.xml   
 
 #Taiilwind pak=ckeges
 node_modules/
+public/assets/css/app.css

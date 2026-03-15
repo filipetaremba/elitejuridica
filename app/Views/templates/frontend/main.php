@@ -1,41 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt" class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?? 'Advocacia & Consultoria Jurídica' ?></title>
-    <meta name="description" content="<?= $meta_description ?? 'Escritório de advocacia comprometido com a excelência jurídica.' ?>">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand:    '#373737',
-                        dark:     '#111111',
-                        mid:      '#555555',
-                        soft:     '#999999',
-                        border:   '#E5E5E5',
-                        offwhite: '#F7F7F7',
-                    },
-                    fontFamily: {
-                        sans:  ['"Antonio"', 'sans-serif'],
-                        title: ['"Antonio"', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
+    <!-- SEO primário -->
+    <title><?= esc($title ?? 'Advocacia & Consultoria Jurídica') ?></title>
+    <meta name="description" content="<?= esc($meta_description ?? 'Escritório de advocacia comprometido com a excelência jurídica.') ?>">
+    <meta name="robots" content="<?= esc($robots ?? 'index, follow') ?>">
 
-    <!-- Google Fonts — Antonio -->
+    <!-- Canonical: evita conteúdo duplicado no Google -->
+    <link rel="canonical" href="<?= esc($canonical ?? current_url()) ?>">
+
+    <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
+    <meta property="og:type"        content="website">
+    <meta property="og:title"       content="<?= esc($title ?? 'Advocacia & Consultoria Jurídica') ?>">
+    <meta property="og:description" content="<?= esc($meta_description ?? '') ?>">
+    <meta property="og:url"         content="<?= esc(current_url()) ?>">
+    <meta property="og:image"       content="<?= esc($og_image ?? base_url('assets/img/og-default.jpg')) ?>">
+    <meta property="og:locale"      content="pt_BR">
+
+    <!-- Favicon -->
+    <link rel="icon"             type="image/png" sizes="32x32" href="<?= base_url('assets/img/favicon-32.png') ?>">
+    <link rel="icon"             type="image/png" sizes="16x16" href="<?= base_url('assets/img/favicon-16.png') ?>">
+    <link rel="apple-touch-icon" sizes="180x180"                href="<?= base_url('assets/img/apple-touch-icon.png') ?>">
+
+    <!-- Fonts: preconnect primeiro, depois load -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;600;700&display=swap"
+          as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;600;700&display=swap" rel="stylesheet">
+    </noscript>
 
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- CSS compilado (Tailwind via build, não CDN) -->
+    <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
+
+    <!-- Phosphor Icons (local, não unpkg) -->
+    <script src="<?= base_url('assets/js/vendor/phosphor.min.js') ?>" defer></script>
 
     <style>
         * { font-family: 'Antonio', sans-serif; }
@@ -59,6 +64,7 @@
         ::-webkit-scrollbar-thumb { background: #373737; }
     </style>
 
+    <!-- Slot para CSS/scripts específicos de cada página -->
     <?= $extra_head ?? '' ?>
 </head>
 
@@ -66,13 +72,14 @@
 
     <?= view('templates/frontend/navbar') ?>
 
-    <main>
+    <main id="main-content">
         <?= $content ?? '' ?>
     </main>
 
     <?= view('templates/frontend/footer') ?>
 
-    <script src="<?= base_url('assets/js/frontend/main.js') ?>"></script>
+    <!-- JS principal (defer = não bloqueia renderização) -->
+    <script src="<?= base_url('assets/js/frontend/main.js') ?>" defer></script>
     <?= $extra_scripts ?? '' ?>
 
 </body>
