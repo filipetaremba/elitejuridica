@@ -21,8 +21,8 @@
     <meta property="og:locale"      content="pt_BR">
 
     <!-- Favicon -->
-    <link rel="icon"             type="image/png" sizes="32x32" href="<?= base_url('assets/img/favicon-32.png') ?>">
-    <link rel="icon"             type="image/png" sizes="16x16" href="<?= base_url('assets/img/favicon-16.png') ?>">
+    <link rel="icon"             type="image/png" sizes="32x32" href="<?= base_url('assets/images/favicon.png') ?>">
+    <link rel="icon"             type="image/png" sizes="16x16" href="<?= base_url('assets/images/favicon.png') ?>">
     <link rel="apple-touch-icon" sizes="180x180"                href="<?= base_url('assets/img/apple-touch-icon.png') ?>">
 
     <!-- Fonts: preconnect primeiro, depois load -->
