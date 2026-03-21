@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
 
     <!-- Phosphor Icons (local) -->
-    <script src="<?= base_url('assets/js/vendor/phosphor.min.js') ?>" defer></script>
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
     <style>
         * { font-family: 'Antonio', sans-serif; box-sizing: border-box; }
@@ -75,6 +75,8 @@
 
         /* Flash */
         .flash { transition: opacity 0.5s; }
+
+        
     </style>
 
     <?= $extra_head ?? '' ?>

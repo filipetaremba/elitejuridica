@@ -10,6 +10,7 @@ $noticias = $noticias_data['noticias'] ?? [];
 /* CSS específico da HOME */
 $extra_head = '
 <style>
+
 .par-reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -27,6 +28,11 @@ $extra_head = '
         top: 0 !important;
         height: 100% !important;
     }
+    #hero-slider .slide .max-w-7xl {
+        width: 70%;
+        max-width: 70%;
+    }
+}
 }
 </style>
 ';

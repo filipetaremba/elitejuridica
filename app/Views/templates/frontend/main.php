@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
 
     <!-- Phosphor Icons (local, não unpkg) -->
-    <script src="<?= base_url('assets/js/vendor/phosphor.min.js') ?>" defer></script>
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
     <style>
         * { font-family: 'Antonio', sans-serif; }
@@ -62,6 +62,13 @@
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #ffffff; }
         ::-webkit-scrollbar-thumb { background: #373737; }
+
+        @media (max-width: 768px) {
+            #hero-slider {
+                height: 85vh !important;
+                min-height: 0 !important;
+            }
+        }
     </style>
 
     <!-- Slot para CSS/scripts específicos de cada página -->

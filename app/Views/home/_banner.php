@@ -8,7 +8,7 @@
 
 
 <section id="hero-slider"
-         class="relative w-full overflow-hidden"
+         class="relative w-full overflow-hidden hero-slider-section"
          style="height: calc(100vh - 64px); min-height: 580px;">
 
     <!-- ── Slides ─────────────────────────────────── -->
